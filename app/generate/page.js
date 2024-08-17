@@ -12,7 +12,12 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Grid,
+  Card,
+  CardContent
 } from '@mui/material'
+import {firestore} from '@/firebase';
+import { collection, doc, getDoc, writeBatch } from "firebase/firestore";
 
 export default function Generate() {
   const [text, setText] = useState('')
@@ -58,10 +63,10 @@ export default function Generate() {
     }
   
     try {
-      const userDocRef = doc(collection(db, 'users'), user.id)
+      const userDocRef = doc(collection(firestore, 'users'), user.id)
       const userDocSnap = await getDoc(userDocRef)
   
-      const batch = writeBatch(db)
+      const batch = writeBatch(firestore)
   
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data()
