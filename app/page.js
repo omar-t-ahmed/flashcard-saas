@@ -2,9 +2,11 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { AppBar, Toolbar, Typography, Box, Grid, Button } from '@mui/material';
 
+
 export default function Home() {
   return (
     <main className="bg-zinc-900 min-h-screen text-white">
+
       <MaxWidthWrapper className="py-4">
         <div>
           Flashcard App
@@ -35,9 +37,9 @@ export default function Home() {
           <Button variant="contained" color="primary" sx={{ mt: 2, mr: 2 }} href="/generate">
             Get Started
           </Button>
-          <Button variant="outlined" color="primary" sx={{ mt: 2 }}>
+          {/* <Button variant="outlined" color="primary" sx={{ mt: 2 }}>
             Learn More
-          </Button>
+          </Button> */}
         </Box>
 
         <Box sx={{ my: 6 }}>

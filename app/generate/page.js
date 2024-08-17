@@ -16,7 +16,7 @@ import {
   Card,
   CardContent
 } from '@mui/material'
-import {firestore} from '@/firebase';
+import db from '../../firebase';
 import { collection, doc, getDoc, writeBatch } from "firebase/firestore";
 
 export default function Generate() {
@@ -63,10 +63,10 @@ export default function Generate() {
     }
   
     try {
-      const userDocRef = doc(collection(firestore, 'users'), user.id)
+      const userDocRef = doc(collection(db, 'users'), user.id)
       const userDocSnap = await getDoc(userDocRef)
   
-      const batch = writeBatch(firestore)
+      const batch = writeBatch(db)
   
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data()
