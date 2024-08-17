@@ -34,3 +34,4 @@ export async function POST(req) {
   // Return the flashcards as a JSON response
   return NextResponse.json(flashcards.flashcards)
 }
+
