@@ -18,8 +18,11 @@ import {
 } from '@mui/material'
 import db from '../../firebase';
 import { collection, doc, getDoc, writeBatch } from "firebase/firestore";
+import { useUser } from "@clerk/nextjs";
+
 
 export default function Generate() {
+  const { user } = useUser();
   const [text, setText] = useState('')
   const [flashcards, setFlashcards] = useState([])
 
@@ -33,6 +36,7 @@ export default function Generate() {
 
 
   const handleSubmit = async () => {
+    console.log(user)
     if (!text.trim()) {
       alert('Please enter some text to generate flashcards.')
       return
