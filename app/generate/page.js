@@ -20,23 +20,20 @@ import db from '../../firebase';
 import { collection, doc, getDoc, writeBatch } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
 
-
 export default function Generate() {
   const { user } = useUser();
   const [text, setText] = useState('')
   const [flashcards, setFlashcards] = useState([])
 
-  //state for the flashcard set name and the dialog open state
+  // State for the flashcard set name and the dialog open state
   const [setName, setSetName] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  //functions to handle opening and closing the dialog
+  // Functions to handle opening and closing the dialog
   const handleOpenDialog = () => setDialogOpen(true)
   const handleCloseDialog = () => setDialogOpen(false)
 
-
   const handleSubmit = async () => {
-    console.log(user)
     if (!text.trim()) {
       alert('Please enter some text to generate flashcards.')
       return
@@ -61,7 +58,6 @@ export default function Generate() {
   }
 
   const saveFlashcards = async () => {
-    console.log(flashcards)
     if (!setName.trim()) {
       alert('Please enter a name for your flashcard set.')
       return
@@ -95,9 +91,14 @@ export default function Generate() {
     }
   }
 
-
   return (
     <Container maxWidth="md">
+      <Box sx={{ my: 4 }}>
+        <Button variant="contained" color="secondary" href="/">
+          Home
+        </Button>
+      </Box>
+      
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Generate Flashcards
@@ -124,41 +125,41 @@ export default function Generate() {
       
       {flashcards.length > 0 && (
         <Box sx={{ mt: 4 }}>
-            <Typography variant="h5" component="h2" gutterBottom>
+          <Typography variant="h5" component="h2" gutterBottom>
             Generated Flashcards
-            </Typography>
-            <Grid container spacing={2}>
+          </Typography>
+          <Grid container spacing={2}>
             {flashcards.map((flashcard, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card>
-                    <CardContent>
+                  <CardContent>
                     <Typography variant="h6">Front:</Typography>
                     <Typography>{flashcard.front}</Typography>
                     <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
                     <Typography>{flashcard.back}</Typography>
-                    </CardContent>
+                  </CardContent>
                 </Card>
-                </Grid>
+              </Grid>
             ))}
-            </Grid>
+          </Grid>
         </Box>
-        )}
+      )}
 
-        {flashcards.length > 0 && (
+      {flashcards.length > 0 && (
         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-            <Button variant="contained" color="primary" onClick={handleOpenDialog}>
+          <Button variant="contained" color="primary" onClick={handleOpenDialog}>
             Save Flashcards
-            </Button>
+          </Button>
         </Box>
-        )}
+      )}
 
-        <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>Save Flashcard Set</DialogTitle>
         <DialogContent>
-            <DialogContentText>
+          <DialogContentText>
             Please enter a name for your flashcard set.
-            </DialogContentText>
-            <TextField
+          </DialogContentText>
+          <TextField
             autoFocus
             margin="dense"
             label="Set Name"
@@ -166,16 +167,15 @@ export default function Generate() {
             fullWidth
             value={setName}
             onChange={(e) => setSetName(e.target.value)}
-            />
+          />
         </DialogContent>
         <DialogActions>
-            <Button onClick={handleCloseDialog}>Cancel</Button>
-            <Button onClick={saveFlashcards} color="primary">
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={saveFlashcards} color="primary">
             Save
-            </Button>
+          </Button>
         </DialogActions>
-        </Dialog>
-
+      </Dialog>
     </Container>
   )
 }
