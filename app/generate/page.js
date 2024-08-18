@@ -61,6 +61,7 @@ export default function Generate() {
   }
 
   const saveFlashcards = async () => {
+    console.log(flashcards)
     if (!setName.trim()) {
       alert('Please enter a name for your flashcard set.')
       return
