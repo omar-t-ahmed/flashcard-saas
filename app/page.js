@@ -5,12 +5,6 @@ import { AppBar, Toolbar, Typography, Box, Grid, Button } from '@mui/material';
 export default function Home() {
   return (
     <main className="bg-zinc-900 min-h-screen text-white">
-
-      <MaxWidthWrapper className="py-4">
-        <div>
-          Flashcard App
-        </div>
-
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" style={{ flexGrow: 1 }}>
@@ -41,7 +35,7 @@ export default function Home() {
         </Box>
 
         <Box sx={{ my: 6 }}>
-          <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
+          {/* <Typography variant="h4" component="h2" gutterBottom>Features</Typography> */}
           <Grid container spacing={4}>
             {/* Feature items */}
           </Grid>
@@ -62,7 +56,6 @@ export default function Home() {
             </Grid>
           </Grid>
         </Box>
-      </MaxWidthWrapper>
     </main>
   );
 }
